@@ -1,6 +1,6 @@
 MODE: Joint # Cut_Batch、Cut_Single、Joint
 
-IMAGE_INPUT_DIR: input/1
+IMAGE_INPUT_DIR: input
 TEMP_IMAGE_INPUT_DIR: temp
 
 CUT_SINGLE_FILENAME: 017.jpg
