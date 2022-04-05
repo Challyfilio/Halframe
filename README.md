@@ -1,4 +1,4 @@
-# Halframe V1.0（没准儿以后也不更了）
+# Halframe v1.0（没准儿以后也不更了）
 
 Halframe App 后期拼图用
 
