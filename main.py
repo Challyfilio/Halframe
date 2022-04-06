@@ -1,5 +1,5 @@
 import yaml
-from funs import *
+from funs import Cut_Process_batch, Cut_Process_single, Joint_Process
 
 if __name__ == '__main__':
     file = open('config.yml', 'r', encoding='utf-8')
