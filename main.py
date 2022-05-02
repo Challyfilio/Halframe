@@ -6,7 +6,7 @@ if __name__ == '__main__':
     cfg = file.read()
     dict = yaml.safe_load(cfg)
 
-    mode = dict['MODE']
+    mode = dict['MODE']['MODE']
     image_input_dir = dict['IMAGE_INPUT_DIR']
     temp_image_input_dir = dict['TEMP_IMAGE_INPUT_DIR']
     cut_single_filename = dict['CUT_SINGLE_FILENAME']
