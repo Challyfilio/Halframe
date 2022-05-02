@@ -44,8 +44,12 @@ def CutAndSaveTemp(input_image, layout, height, width, basename):
 
 def CutAndSaveTemp_WithBar(input_image, layout, basename, cut_rejoint=False, black_bar=False):
     if layout == 'vertical':
-        temp1 = input_image[:1416, :]
-        temp2 = input_image[1500:, :]
+        if input_image.shape[0] == 2896:  # 2896
+            temp1 = input_image[:1416, :]
+            temp2 = input_image[1480:, :]
+        else:
+            temp1 = input_image[:1416, :]
+            temp2 = input_image[1500:, :]
         if cut_rejoint:
             if black_bar:
                 mask = np.zeros((64, temp1.shape[1], 3), np.uint8)
@@ -56,8 +60,12 @@ def CutAndSaveTemp_WithBar(input_image, layout, basename, cut_rejoint=False, bla
         else:
             Save_temp(basename, temp1, temp2)
     elif layout == 'horizontal':
-        temp1 = input_image[:, :1416]
-        temp2 = input_image[:, 1500:]
+        if input_image.shape[1] == 2896:
+            temp1 = input_image[:, :1416]
+            temp2 = input_image[:, 1480:]
+        else:
+            temp1 = input_image[:, :1416]
+            temp2 = input_image[:, 1500:]
         if cut_rejoint:
             if black_bar:
                 mask = np.zeros((temp1.shape[0], 64, 3), np.uint8)
@@ -158,6 +166,7 @@ def JointAndSaveRes(input_temp1, input_temp2, joint_way, black_bar, length, base
         pass
     ImageShow_Plt(result)
     Save_result(basename, result)
+    print('Done')
 
 
 def Save_result(basename: str, result):
@@ -165,7 +174,6 @@ def Save_result(basename: str, result):
     if not os.path.isdir(dir_name):
         os.makedirs(dir_name)
     cv2.imwrite('result/{}.jpg'.format(basename), result)
-    print('Image Save Finish')
 
 
 def Joint_Process(temp_image_input_dir, filename1, filename2, black_bar=False):
