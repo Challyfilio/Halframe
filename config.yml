@@ -1,15 +1,19 @@
-MODE: Joint # Cut_Batch、Cut_Single、Joint
+MODE_1: &MODE_1 { 'MODE': Cut_Batch }
+MODE_2: &MODE_2 { 'MODE': Cut_Single }
+MODE_3: &MODE_3 { 'MODE': Joint }
+
+MODE: *MODE_1
 
 IMAGE_INPUT_DIR: input
 TEMP_IMAGE_INPUT_DIR: temp
 
 CUT_SINGLE_FILENAME: 017.jpg
-TEMP_FILENAME_1: 017_t2.jpg
-TEMP_FILENAME_2: 017_t1.jpg
+TEMP_FILENAME_1: 0002_t1.jpg
+TEMP_FILENAME_2: 0001_t2.jpg
 
 STATE_1: &STATE_1 { 'cut_rejoint': True, 'black_bar': True }  # 截去渐变黑边，添加黑边拼图，存result
 STATE_2: &STATE_2 { 'cut_rejoint': True, 'black_bar': False }  # 截去渐变黑边，不添加黑边拼图，存result
 STATE_3: &STATE_3 { 'cut_rejoint': False, 'black_bar': True }  # 截去渐变黑边，存temp
 STATE_4: &STATE_4 { 'cut_rejoint': False, 'black_bar': False }  # 保留渐变黑边，存temp
 
-STATE: *STATE_3
+STATE: *STATE_1
