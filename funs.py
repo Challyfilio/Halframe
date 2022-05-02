@@ -1,7 +1,7 @@
 """
 Halframe相机照片填坑用
-v1.0
-2022/4/5
+v2.0
+2022/5/2
 Challyfilio
 """
 import cv2
@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import glob
+from tqdm import tqdm
 
 
 def Info(input_image):
@@ -77,7 +78,8 @@ def Save_temp(basename: str, temp1, temp2):
 
 def Cut_Process_batch(image_input_dir, cut_rejoint=False, black_bar=False):
     image_input_path = glob.glob(os.path.join(image_input_dir, '*.*'))
-    for path in image_input_path:
+    assert (len(image_input_path) != 0)
+    for path in tqdm(image_input_path):
         basename = get_file_basename(path)
         input = cv2.imread(path)
         layout, height, width = Info(input)
@@ -159,6 +161,9 @@ def JointAndSaveRes(input_temp1, input_temp2, joint_way, black_bar, length, base
 
 
 def Save_result(basename: str, result):
+    dir_name = 'result'
+    if not os.path.isdir(dir_name):
+        os.makedirs(dir_name)
     cv2.imwrite('result/{}.jpg'.format(basename), result)
     print('Image Save Finish')
 
